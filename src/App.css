@@ -1,38 +1,186 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
+
+/*
+
+LOGIN / SIGNUP
+
+*/
+.login-signup-form-container {
+  text-align: left;
+  padding: 1em;
+  border: 2px solid #d3d3d3;
+  border-radius: .5em;
+  width: 600px;
+  margin-top: 100px;
+  font-size: 1.2rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.login-signup-form {
+  padding: 1em;
+}
+.login-signup-form Button {
+  background-color: #F7D5DC;
+  color: black;
+  border: none;
+}
+.small-text {
+  font-size: 1rem;
+  margin: auto;
+  margin-top: 2em;
+}
+.small-link {
+  text-decoration: underline;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/*
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+NAVIGATION
+
+*/
+.navigation {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  height: 10vh;
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  font-family: 'Redressed', cursive;
+  background-color: #E4E7EE; 
+}
+.logo-container {
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
+  margin-left: 1.5em;
+}
+.logo {
+  width: 15%;
+}
+.logo-text {
+  font-size: 2.25rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.nav-links {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  margin: 1rem;
+  font-size: 1.75rem;
+}
+.link {
+  padding: 1em;
+  color: black;
+}
+.nav-button {
+  padding-right: 1em;
+  border: none;
+  background-color: #E4E7EE;
+  text-decoration: underline;
+  color: black;
+}
+
+/* 
+
+LANDING
+
+*/
+
+/* section 1 */
+.section1 {
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  position: relative;
+  background-image: url('./assets/brooke-lark-wMzx2nBdeng-unsplash.jpg');
+  background-size: cover;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+}
+.section1 .content {
+  display: flex;
+  padding: 10vh;
+  height: 30vh;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.section1 h1{
+  position: relative;
+  color: black;
+  font-family: 'Redressed', cursive;
+  font-size: 6rem;
+  opacity: 0.2;
+  text-decoration: underline;
+}
+.section1 h1:hover {
+  opacity: 0.4;
+  transition: 0.2s;
+}
+.landing-navigation {
+  display: flex;
+  padding-top: 30vh;
+  width: 25vw;
+  justify-content: space-between;
+  align-items: center;
+}
+.landing-link {
+  color: black;
+  opacity: 0.4;
+  font-family: 'Redressed', cursive;
+  font-size: 2rem;
+}
+.landing-link:hover {
+  color: black;
+  text-decoration: none;
+  opacity: 0.6;
 }
 
-.App-link {
-  color: #61dafb;
+/* section 2 */
+.section2 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  background-image: url('./assets/eaters-collective-12eHC6FxPyg-unsplash.jpg');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.section2 p {
+  font-size: 2rem;
+  width: 25vw;
+  margin-left: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* section 3 */
+.section3 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  background-image: url('./assets/brooke-lark-W9OKrxBqiZA-unsplash.jpg');
+  background-size: cover;
+  transform: rotateY(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.section3 p {
+  transform: rotateY(180deg);
+  font-size: 2rem;
+  width: 25vw;
+  margin-top: 10vh;
+}
+.section3 .CTA {
+  transform: rotateY(180deg);
+  font-size: 2rem;
+  width: 25vw;
+  margin-top: 2rem;
+  text-decoration: underline;
+  color: black;
 }
