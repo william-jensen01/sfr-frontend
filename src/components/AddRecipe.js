@@ -78,7 +78,7 @@ class AddRecipe extends React.Component {
                             <Input
                                 type="textarea"
                                 name="ingredients"
-                                onChange={this.handleIngredientChanges}
+                                onChange={this.handleChanges}
                                 value={this.state.ingredients}
                             />
                         </FormGroup>
