@@ -1,219 +1,198 @@
 import {
-    SIGN_UP_START,
-    SIGN_UP_SUCCESS,
-    SIGN_UP_FAILURE,
+    REGISTER_START,
+    REGISTER_SUCCESS,
+    REGISTER_FAILURE,
     LOGIN_START,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
-    FETCH_RECIPE_START,
-    FETCH_RECIPE_SUCCESS,
-    FETCH_RECIPE_FAILURE,
     ADD_RECIPE_START,
     ADD_RECIPE_SUCCESS,
     ADD_RECIPE_FAILURE,
-    UPDATE_RECIPE_START,
-    UPDATE_RECIPE_SUCCESS,
-    UPDATE_RECIPE_FAILURE,
+    EDIT_RECIPE_START,
+    EDIT_RECIPE_SUCCESS,
+    EDIT_RECIPE_FAILURE,
     DELETE_RECIPE_START,
     DELETE_RECIPE_SUCCESS,
     DELETE_RECIPE_FAILURE,
-    FETCH_RECIPES_START,
-    FETCH_RECIPES_SUCCESS,
-    FETCH_RECIPES_FAILURE
-  } from "../actions";
+    GET_RECIPE_START,
+    GET_RECIPE_SUCCESS,
+    GET_RECIPE_FAILURE,
+    GET_RECIPE_LIST_START,
+    GET_RECIPE_LIST_SUCCESS,
+    GET_RECIPE_LIST_FAILURE,
+    SEARCH_RECIPE,
+    GET_CATEGORIES_START,
+    GET_CATEGORIES_SUCCESS,
+    GET_CATEGORIES_FAILURE
+} from '../actions';
 
-  const initialState = {
-    recipe: null,
-    titles: [],
-    error: null,
-    signingUp: false,
-    loggingIn: false,
-    fetchingRecipe: false,
+const initialState = {
+    isLoggedIn: false,
+    recipes: [],
+    filteredRecipes: [],
+    categories: [],
     addingRecipe: false,
-    updatingRecipe: false,
+    fetchingCategories: false,
+    fetchingRecipes: false,
+    fetchingRecipe: false,
+    editingRecipe: false,
     deletingRecipe: false,
-    fetchingTitles: false,  
-    uniqueTags: ["all"],
-    currentRecipes: [],
-    success: false
-  };
+    error: null,
+    registeringUser: false,
+    loggingIn: false,
+    recipe: {
+        title: '',
+        source: '',
+        ingredients: [],
+        instructions: '',
+        category: '',
+        id: '',
+    }
+};
 
-  const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case SIGN_UP_START:
+const reducer = (state = initialState, action) => {
+    switch(action.type) {
+        case REGISTER_START:
             return {
                 ...state,
-                error: null,
-                signingUp: true,
-                success: false
-            };
-        case SIGN_UP_SUCCESS:
+                registeringUser: true,
+            }
+        case REGISTER_SUCCESS:
             return {
                 ...state,
-                error: null,
-                signingUp: false,
-                success: true
-            };
-        case SIGN_UP_FAILURE:
+                registeringUser: false,
+                isLoggedIn: true,
+            }
+        case REGISTER_FAILURE:
             return {
                 ...state,
                 error: action.payload,
-                signingUp: null,
-                success: false
-            };
-        
+                registeringUser: false,
+            }
         case LOGIN_START:
             return {
                 ...state,
-                error: null,
                 loggingIn: true,
-                success: false
-            };
+            }
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                error: null,
                 loggingIn: false,
-                success: true
-            };
+                isLoggedIn: true,
+            }
         case LOGIN_FAILURE:
             return {
                 ...state,
                 error: action.payload,
                 loggingIn: false,
-                success: false
-            };
-        
-        case FETCH_RECIPE_START:
-            return {
-                ...state,
-                fetchingRecipe: true,
-                error: null,
-                success: false
-            };
-        case FETCH_RECIPE_SUCCESS:
-            return {
-                ...state,
-                error: null,
-                fetchingRecipe: false,
-                recipe: action.payload,
-                success: true
-            };
-        case FETCH_RECIPE_FAILURE:
-            return {
-                ...state,
-                error: action.payload,
-                fetchingRecipe: false,
-                success: false
-            };
-
+            }
         case ADD_RECIPE_START:
             return {
                 ...state,
-                error: null,
                 addingRecipe: true,
-                recipes: action.payload,
-                success: false
-            };
+            }
         case ADD_RECIPE_SUCCESS:
             return {
                 ...state,
-                error: null,
                 addingRecipe: false,
-                recipes: action.payload,
-                success: true
-            };
+            }
         case ADD_RECIPE_FAILURE:
             return {
                 ...state,
                 error: action.payload,
                 addingRecipe: false,
-                success: false
-            };
-
-        case UPDATE_RECIPE_START:
+            }
+        case EDIT_RECIPE_START:
             return {
                 ...state,
-                error: null,
-                updatingRecipe: true,
-                success: false
-            };
-        case UPDATE_RECIPE_SUCCESS:
+                editingRecipe: true,
+            }
+        case EDIT_RECIPE_SUCCESS:
             return {
                 ...state,
-                error: null,
-                updatingRecipe: false,
-                recipe: action.payload,
-                success: true
-            };
-        case UPDATE_RECIPE_FAILURE:
+                editingRecipe: false,
+            }
+        case EDIT_RECIPE_FAILURE:
             return {
                 ...state,
                 error: action.payload,
-                updatingRecipe: false,
-                success: false
-            };
-
+                editingRecipe: false,
+            }
         case DELETE_RECIPE_START:
             return {
                 ...state,
-                error: null,
                 deletingRecipe: true,
-                success: false
-            };
+            }
         case DELETE_RECIPE_SUCCESS:
             return {
                 ...state,
-                recipes: action.payload,
                 deletingRecipe: false,
-                error: null,
-                success: true
-            };
+            }
         case DELETE_RECIPE_FAILURE:
             return {
                 ...state,
                 error: action.payload,
                 deletingRecipe: false,
-                success: false
-            };
-        
-            case FETCH_RECIPES_START:
-                return {
-                    ...state,
-                    error: null,
-                    fetchingTitles: true,
-                    success: false
-                };
-            case FETCH_RECIPES_SUCCESS:
-                const tempUniqueTags = ['all'];
-                action.payload.recipes.forEach(title => {
-                    title.tags.forEach(tag => {
-                        if (!tempUniqueTags.includes(tag)) {
-                            tempUniqueTags.push(tag);
-                        }
-                    });
-                });
-                console.log('payload', action.payload.recipes)
-                return {
-                    ...state,
-                    titles: action.payload,
-                    fetchingTitles: false,
-                    error: null,
-                    uniqueTags: tempUniqueTags,
-                    currentRecipes: action.payload.recipes,
-                    success: true
-                };
-            case FETCH_RECIPES_FAILURE:
-                return {
-                    ...state,
-                    error: action.payload,
-                    fetchingTitles: false,
-                    success: false
-                };
-
+            }
+        case GET_RECIPE_START:
+            return {
+                ...state,
+                fetchingRecipe: true,
+            }
+        case GET_RECIPE_SUCCESS:
+            return {
+                ...state,
+                fetchingRecipe: false,
+                recipe: action.payload,
+            }
+        case GET_RECIPE_FAILURE:
+            return {
+                ...state,
+                fetchingRecipe: false,
+                error: action.payload,
+            }
+        case GET_RECIPE_LIST_START:
+            return {
+                ...state,
+                fetchingRecipes: true,
+            }
+        case GET_RECIPE_LIST_SUCCESS:
+            return {
+                ...state,
+                fetchingRecipes: false,
+                recipes: action.payload,
+            }
+        case GET_RECIPE_LIST_FAILURE:
+            return {
+                ...state,
+                fetchingRecipes: false,
+                error: action.payload,
+            }
+        case SEARCH_RECIPE:
+            return {
+                ...state,
+                filteredRecipes: action.payload,
+            }
+        case GET_CATEGORIES_START:
+            return {
+                ...state,
+                fetchingCategories: true,
+            }
+        case GET_CATEGORIES_SUCCESS:
+            return {
+                ...state,
+                fetchingCategories: false,
+                categories: action.payload
+            }
+        case GET_CATEGORIES_FAILURE:
+            return {
+                ...state,
+                fetchingCategories: false,
+                error: action.payload
+            }
         default:
             return state;
     }
-  };
+};
 
-  export default reducer;
+export default reducer;

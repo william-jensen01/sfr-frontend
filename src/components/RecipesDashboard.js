@@ -1,5 +1,7 @@
 import React from 'react';
 import Navigation from './Navigation';
+import { getRecipeList } from '../actions'
+import { connect } from 'react-redux';
 
 function RecipesDashboard () {
     return (
@@ -10,4 +12,9 @@ function RecipesDashboard () {
     )
 };
 
-export default RecipesDashboard;
+const mapStateToProps = (state) => ({
+    recipes: state.recipes,
+    filteredRecipes: state.filteredRecipes
+})
+
+export default connect(mapStateToProps, { getRecipeList })(RecipesDashboard);

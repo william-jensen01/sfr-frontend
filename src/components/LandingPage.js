@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/50ade133-d93b-4586-8cec-f0e82c7ead47_200x200.png';
 
 function LandingPage () {
     return (

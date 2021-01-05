@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signup } from '../actions';
+import { register } from '../actions';
 import { Container, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 class SignupForm extends React.Component {
@@ -26,12 +26,8 @@ class SignupForm extends React.Component {
                 username: this.state.username,
                 password: this.state.password1
             };
-            this.props.signup(newUser, this.props.history);
-            this.setState({
-                username: "",
-                password1: "",
-                password2: ""
-            });
+            this.props.register(newUser, this.props.history);
+            
         } else {
             this.setState({ ...this.state, passwordMatch: false });
         }
@@ -92,7 +88,7 @@ class SignupForm extends React.Component {
                                 ""
                             )}
 
-                            <button className="btn">Sign Up</button>
+                            <Button className="btn">Sign Up</Button>
 
                             <p className="small-text">Already have an account? Login <Link to='/login' className="small-link">here </Link></p>
                         </Form>
@@ -105,7 +101,7 @@ class SignupForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    signingUp: state.signingUp
+    registeringUser: state.registeringUser
 });
 
-export default connect(mapStateToProps,{ signup })(SignupForm);
+export default connect(mapStateToProps,{ register })(SignupForm);
