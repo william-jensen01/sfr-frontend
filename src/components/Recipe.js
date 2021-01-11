@@ -1,10 +1,21 @@
 import React from 'react';
-import Navigation from './Navigation';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-function Recipe () {
-    return (
-        <Navigation />
-    )
+class Recipe extends React.Component {
+    render() {
+        console.log(this.props)
+        return (
+            <div className="recipe-container">
+                <div className="recipe-small">
+                    <p>{this.props.recipe.title}</p>
+                    <p>{this.props.recipe.source}</p>
+                    
+                    <Link to={`/recipes/view/${this.props.recipe.id}`}>Read Recipe</Link>
+                </div>
+            </div>
+        )
+    }
 };
 
-export default Recipe;
+export default connect (null, {})(Recipe);

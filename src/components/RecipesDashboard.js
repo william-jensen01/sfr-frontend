@@ -1,20 +1,45 @@
 import React from 'react';
 import Navigation from './Navigation';
-import { getRecipeList } from '../actions'
+import SearchBar from './SearchBar';
+import Recipe from './Recipe';
+import { getRecipes } from '../actions'
 import { connect } from 'react-redux';
 
-function RecipesDashboard () {
-    return (
-        <div>
-            <Navigation />
-            <h2>Welcome to Recipes Dashboard!</h2>
-        </div>
-    )
-};
+class RecipesDashboard extends React.Component {
+    componentDidUpdate () {
+        this.props.getRecipes();
+    };
+
+    render() {
+        if (!this.props.currentRecipes || this.props.fetchingRecipes) {
+            return <p>Loading...</p>;
+        } else {
+            // let recipesToDisplay = [];
+            // if (this.props.filteredRecipes.length >= 1) {
+            //     recipesToDisplay = this.props.filteredRecipes;
+            // } else {
+            //     recipesToDisplay = this.props.recipes.recipes;
+            console.log(this.props.currentRecipes)
+            return (
+                <div className="recipes-dashboard">
+                    <Navigation />
+                    <h1>Recipes</h1>
+                    <SearchBar />
+                    {this.props.currentRecipes.map((recipe) => {
+                        return (
+                            <Recipe recipe={recipe} />
+                        )
+                    })}
+                </div>
+            )
+        }
+    }
+}
 
 const mapStateToProps = (state) => ({
-    recipes: state.recipes,
-    filteredRecipes: state.filteredRecipes
+    // recipes: state.recipes.recipes,
+    fetchingRecipes: state.fetchingRecipes,
+    currentRecipes: state.currentRecipes
 })
 
-export default connect(mapStateToProps, { getRecipeList })(RecipesDashboard);
+export default connect(mapStateToProps, { getRecipes })(RecipesDashboard);

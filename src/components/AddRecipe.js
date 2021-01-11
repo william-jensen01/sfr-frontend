@@ -1,5 +1,5 @@
 import React from 'react';
-import { addRecipe, getCategories } from '../actions';
+import { addRecipe } from '../actions';
 import { connect } from 'react-redux';
 import { Container, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
@@ -15,10 +15,6 @@ class AddRecipe extends React.Component {
         id: Date.now()
     };
 
-    componentDidMount() {
-        this.props.getCategories();
-    };
-
     handleChanges = event => {
         this.setState({
             ...this.state,
@@ -28,6 +24,7 @@ class AddRecipe extends React.Component {
     
     handleSubmit = event => {
         event.preventDefault();
+        // console.log(this.state)
         this.props.addRecipe(this.state, this.props.history);
     };
 
@@ -36,7 +33,7 @@ class AddRecipe extends React.Component {
             <div className="add-recipe-container">
                 <Navigation />
                 <Container>
-                <Form>
+                <Form onSubmit={this.handleSubmit}>
                     <Col>
                         <FormGroup>
                             <Label>Title:</Label>
@@ -53,9 +50,13 @@ class AddRecipe extends React.Component {
                         <FormGroup>
                             <Label>Categories:</Label>
                             <Input type="select" onChange={this.handleChanges} name='category'>
-                                {this.props.categories.map(category =>
+                                {/* {this.props.categories.map(category =>
                                 <option value={category.id}>{category.name}</option>
-                                )}
+                                )} */}
+                                <option value="entree">entree</option>
+                                <option value="appetizer">appetizer</option>
+                                <option value="dessert">dessert</option>
+                                <option value="vegan">vegan</option>
                             </Input>
                         </FormGroup>
                     </Col>
@@ -103,8 +104,4 @@ class AddRecipe extends React.Component {
     }
 };
 
-const mapStateToProps = (state) => ({
-    categories: state.categories
-});
-
-export default connect(mapStateToProps, { addRecipe, getCategories })(AddRecipe);
+export default connect(null, { addRecipe })(AddRecipe);

@@ -31,9 +31,9 @@ function App() {
           <Route exact path='/login' component={LoginForm} />
           <Route exact path='/register' component={SignupForm} />
           <PrivateRoute exact path='/recipes' component={RecipesDashboard} />
-          <PrivateRoute path='/recipes/view/:id' component={Recipe} />
-          <PrivateRoute path='/editRecipe/:id' component={EditRecipe} />
-          <PrivateRoute path='/addRecipe' component={AddRecipe} />
+          {/* <PrivateRoute path='/recipes/view/:id' component={Recipe} /> */}
+          <PrivateRoute path='/edit/:id' component={EditRecipe} />
+          <PrivateRoute path='/add' component={AddRecipe} />
         </Switch>
       </Provider>
     </div>
