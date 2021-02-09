@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { axiosWithAuth } from '../util/axiosWithAuth';
+import { axiosWithAuth } from '../../util/axiosWithAuth';
 
 export const REGISTER_START = "REGISTER_START";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
@@ -8,6 +8,14 @@ export const REGISTER_FAILURE = "REGISTER_FAILURE";
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
+
+export const GET_RECIPE_LIST_START = "GET_RECIPE_LIST_START";
+export const GET_RECIPE_LIST_SUCCESS = "GET_RECIPE_LIST_SUCCESS";
+export const GET_RECIPE_LIST_FAILURE = "GET_RECIPE_LIST_FAILURE";
+
+export const GET_RECIPE_START = "GET_RECIPE_START";
+export const GET_RECIPE_SUCCESS = "GET_RECIPE_SUCCESS";
+export const GET_RECIPE_FAILURE = "GET_RECIPE_FAILURE";
 
 export const ADD_RECIPE_START = "ADD_RECIPE_START";
 export const ADD_RECIPE_SUCCESS = "ADD_RECIPE_SUCCESS";
@@ -21,19 +29,7 @@ export const DELETE_RECIPE_START = "DELETE_RECIPE_START";
 export const DELETE_RECIPE_SUCCESS = "DELETE_RECIPE_SUCCESS";
 export const DELETE_RECIPE_FAILURE = "DELETE_RECIPE_FAILURE";
 
-export const GET_RECIPE_START = "GET_RECIPE_START";
-export const GET_RECIPE_SUCCESS = "GET_RECIPE_SUCCESS";
-export const GET_RECIPE_FAILURE = "GET_RECIPE_FAILURE";
-
-export const GET_RECIPE_LIST_START = "GET_RECIPE_LIST_START";
-export const GET_RECIPE_LIST_SUCCESS = "GET_RECIPE_LIST_SUCCESS";
-export const GET_RECIPE_LIST_FAILURE = "GET_RECIPE_LIST_FAILURE";
-
 export const SEARCH_RECIPE = "SEARCH_RECIPE";
-
-export const GET_CATEGORIES_START = "GET_CATEGORIES_START";
-export const GET_CATEGORIES_SUCCESS = "GET_CATEGORIES_SUCCESS";
-export const GET_CATEGORIES_FAILURE = "GET_CATEGORIES_FAILURE";
 
 export const register = (user, history) => dispatch => {
     dispatch({

@@ -6,7 +6,6 @@ export const axiosWithAuth = () => {
     return axios.create({
         headers: {
             Authorization: token
-        },
-        baseURL: 'https://lambdaschool-cookbook2.herokuapp.com'
+        }
     })
 }

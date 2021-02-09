@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { login } from '../actions';
+import { login } from '../store/actions';
 import { Container, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 class LoginForm extends React.Component {

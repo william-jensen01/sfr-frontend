@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from './Navigation';
 import SearchBar from './SearchBar';
 import Recipe from './Recipe';
-import { getRecipes } from '../actions'
+import { getRecipes } from '../store/actions';
 import { connect } from 'react-redux';
 
 class RecipesDashboard extends React.Component {

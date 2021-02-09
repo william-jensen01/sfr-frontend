@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { search } from '../actions';
+import { search } from '../store/actions';
 import { Input } from 'reactstrap';
 
 class SearchBar extends React.Component {

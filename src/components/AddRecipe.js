@@ -1,5 +1,5 @@
 import React from 'react';
-import { addRecipe } from '../actions';
+import { addRecipe } from '../store/actions';
 import { connect } from 'react-redux';
 import { Container, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
