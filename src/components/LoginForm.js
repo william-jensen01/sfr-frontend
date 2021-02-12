@@ -6,40 +6,30 @@ import { Container, Col, Form, FormGroup, Label, Input, Button } from 'reactstra
 
 class LoginForm extends React.Component {
     state = {
-        credentials: {
-            username: "",
-            password: ""
-        }
+        username: "",
+        password: ""
     };
 
     handleChanges = (e) => {
         this.setState({
-            credentials: {
-                ...this.state.credentials,
-                [e.target.name]: e.target.value
-            }
+            ...this.state,
+            [e.target.name]: e.target.value
         });
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.login(this.state.credentials, this.props.history);
-        this.setState({
-            credentials: {
-                username: "",
-                password: ""
-            }
-        });
+        this.props.login(this.state);
     };
 
     render() {
-        if (localStorage.getItem('token')) {
-            return <Redirect to='/recipes' />;
-        }
+        // if (localStorage.getItem('token')) {
+        //     return <Redirect to='/recipes' />;
+        // }
         return (
             <div className="login-wrapper">
                 {this.props.loggingIn ? (
-                    <h2>Loading</h2>
+                    <h3>Loading...</h3>
                 ) : (
                     <>
                     <Container className="login-signup-form-container">
@@ -53,7 +43,7 @@ class LoginForm extends React.Component {
                                         required
                                         name="username"
                                         onChange={this.handleChanges}
-                                        value={this.state.credentials.username}
+                                        value={this.state.username}
                                     />
                                 </FormGroup>
                             </Col>
@@ -65,7 +55,7 @@ class LoginForm extends React.Component {
                                         required
                                         name="password"
                                         onChange={this.handleChanges}
-                                        value={this.state.credentials.password}
+                                        value={this.state.password}
                                     />
                                 </FormGroup>
                             </Col>
@@ -85,7 +75,6 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = state => ({
     loggingIn: state.loggingIn,
-    success: state.success
 });
 
 export default connect(mapStateToProps, { login })(LoginForm);

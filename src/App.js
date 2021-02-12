@@ -6,7 +6,7 @@ import './App.css';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import RecipesDashboard from './components/RecipesDashboard';
-import Recipe from './components/Recipe';
+import RecipeDetails from './components/RecipeDetails';
 import EditRecipe from './components/EditRecipe';
 import AddRecipe from './components/AddRecipe';
 // import PrivateRoute from './components/PrivateRoute';
@@ -30,12 +30,12 @@ function App() {
           <Route exact path='/about' component={About} />
           <Route exact path='/login' component={LoginForm} />
           <Route exact path='/register' component={SignupForm} />
-
+          
           {/*  change to private route after you learn backend auth!*/}
           <Route exact path='/recipes' component={RecipesDashboard} /> 
           <Route path='/edit/:id' component={EditRecipe} />
           <Route path='/add' component={AddRecipe} />
-          <Route path='/recipes/view/:id' component={Recipe} />
+          <Route path='/recipes/view/:id' component={RecipeDetails} />
         </Switch>
       </Provider>
     </div>

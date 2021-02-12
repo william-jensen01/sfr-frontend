@@ -10,8 +10,7 @@ function Navigation ( {history} ) {
     return (
         <div className="navigation">
             <div className="logo-container">
-                {/* <img src={logo} alt="logo" className="logo"/> */}
-                <p className="logo-text">Secret Family Recipes</p>
+                <p>Secret Family Recipes</p>
             </div>
             <div className="nav-links">
                 <Link to='/' className="link">Home</Link>

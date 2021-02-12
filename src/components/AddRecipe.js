@@ -7,12 +7,11 @@ import Navigation from './Navigation';
 
 class AddRecipe extends React.Component {
     state = {
-        title: '',
+        recipe_name: '',
         category: '',
         source: '',
         ingredients: '',
         instructions: '',
-        id: Date.now()
     };
 
     handleChanges = event => {
@@ -24,8 +23,7 @@ class AddRecipe extends React.Component {
     
     handleSubmit = event => {
         event.preventDefault();
-        // console.log(this.state)
-        this.props.addRecipe(this.state, this.props.history);
+        this.props.addRecipe(this.state);
     };
 
     render() {
@@ -36,12 +34,12 @@ class AddRecipe extends React.Component {
                 <Form onSubmit={this.handleSubmit}>
                     <Col>
                         <FormGroup>
-                            <Label>Title:</Label>
+                            <Label>Recipe Name:</Label>
                             <Input
                                 type="text"
-                                name="title"
+                                name="recipe_name"
                                 onChange={this.handleChanges}
-                                value={this.state.title}
+                                value={this.state.recipe_name}
                             />
                         </FormGroup>
                     </Col>
@@ -49,15 +47,12 @@ class AddRecipe extends React.Component {
                     <Col>
                         <FormGroup>
                             <Label>Categories:</Label>
-                            <Input type="select" onChange={this.handleChanges} name='category'>
-                                {/* {this.props.categories.map(category =>
-                                <option value={category.id}>{category.name}</option>
-                                )} */}
-                                <option value="entree">entree</option>
-                                <option value="appetizer">appetizer</option>
-                                <option value="dessert">dessert</option>
-                                <option value="vegan">vegan</option>
-                            </Input>
+                            <Input
+                                type="text"
+                                name="category"
+                                onChange={this.handleChanges}
+                                value={this.state.category}
+                            />
                         </FormGroup>
                     </Col>
 

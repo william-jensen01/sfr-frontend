@@ -40,11 +40,11 @@ NAVIGATION
 .navigation {
   display: flex;
   justify-content: space-between;
-  height: 10vh;
+  height: 10vh auto;
   margin: auto;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   font-family: 'Redressed', cursive;
-  background-color: #E4E7EE; 
+  backdrop-filter: blur(10px);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 .logo-container {
   display: flex;
@@ -52,32 +52,34 @@ NAVIGATION
   align-items: center;
   margin-left: 1.5em;
 }
-.logo {
-  width: 15%;
-}
-.logo-text {
+.logo-container p {
   font-size: 2.25rem;
   margin-top: auto;
   margin-bottom: auto;
+  min-width: 100%;
 }
 .nav-links {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   flex-direction: row;
   margin: 1rem;
   font-size: 1.75rem;
 }
 .link {
-  padding: 0.75em;
+  padding: 1rem;
+  color: black;
+}
+.link:hover {
+  text-decoration: none;
   color: black;
 }
 .nav-button {
-  padding: 0.75em;
+  padding: 0.75rem;
   border: none;
-  background-color: #E4E7EE;
   text-decoration: underline;
   color: black;
+  background-color: unset;
 }
 
 /* 
@@ -183,4 +185,101 @@ LANDING
   margin-top: 2rem;
   text-decoration: underline;
   color: black;
+}
+
+
+
+
+.recipes-dashboard {
+  background-image: url('./assets/brooke-lark-29h2n639YDA-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+.recipes-dashboard .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin: auto;
+  padding: 2rem;
+}
+.recipes-dashboard .header h1 {
+  padding-bottom: 1rem;
+}
+.searchbar {
+  width: 20rem
+}
+.recipes-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 90%;
+  min-height: 50%;
+
+}
+.recipe-small-container {
+  margin: auto;
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.recipe-small {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10rem;
+  font-size: 1.5rem;
+}
+.recipe-link {
+  color: black;
+}
+.recipe-link:hover {
+  color: black;
+}
+
+
+
+
+
+
+/* 
+
+DETAILED RECIPE
+
+*/
+.recipe {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+}
+.recipe-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* 
+
+LOADING
+
+*/
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('./assets/lukas-blazek-f-TWhXOrLiU-unsplash.jpg');
+  background-size: cover;
+  background-position: top right;
+  min-height: 100vh;
+}
+.loading-container h1 {
+  display: flex;
+  font-size: 5rem;
 }

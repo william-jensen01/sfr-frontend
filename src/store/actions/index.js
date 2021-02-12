@@ -47,14 +47,12 @@ export const register = (user, history) => dispatch => {
             } else {
                 user.history.push('/login')
             }
-            return true;
         })
         .catch(err => {
             dispatch({
                 type: REGISTER_FAILURE,
                 paylaod: err
             });
-            return false;
         })
 };
 
@@ -81,19 +79,17 @@ export const login = (user, history) => dispatch => {
         })
 };
 
-export const addRecipe = (recipe, history) => dispatch => {
+export const addRecipe = (recipe) => dispatch => {
     dispatch({
         type: ADD_RECIPE_START
     });
-    axiosWithAuth()
-        .post("/recipes", recipe)
+    axios
+        .post("https://wj-secret-family-recipes.herokuapp.com/api/recipes", recipe)
         .then(res => {
             dispatch({
                 type: ADD_RECIPE_SUCCESS,
                 payload: res.data
             });
-            const recipe_id = res.data[res.data.length - 1].id
-            history.push(`/recipes/view/${recipe_id}`);
         })
         .catch(err => {
             dispatch({
@@ -149,8 +145,8 @@ export const getRecipes = () => dispatch => {
     dispatch({
         type: GET_RECIPE_LIST_START
     })
-    axiosWithAuth()
-        .get('/recipes')
+    axios
+        .get('https://wj-secret-family-recipes.herokuapp.com/api/recipes')
         .then(res => {
             dispatch({
                 type: GET_RECIPE_LIST_SUCCESS,
@@ -169,12 +165,12 @@ export const getRecipe = (recipeID) => dispatch => {
     dispatch({
         type: GET_RECIPE_START
     })
-    axiosWithAuth()
-        .get(`/recipes/${recipeID}`)
+    axios
+        .get(`https://wj-secret-family-recipes.herokuapp.com/api/recipes/${recipeID}`)
         .then(res => {
             dispatch({
                 type: GET_RECIPE_SUCCESS,
-                payload: res.data.recipe
+                payload: res.data
             })
         })
         .catch(err => {
@@ -185,34 +181,13 @@ export const getRecipe = (recipeID) => dispatch => {
         })
 };
 
-export const search = (searchString, recipes) => {
-    searchString = searchString.toLowerCase();
-    let filteredRecipes = recipes.filter(recipe => (
-        recipe.name.toLowerCase().includes(searchString)
-        || recipe.category.toLowerCase().includes(searchString)
-    ))
+export const search = (searchTerm, recipes) => {
+    searchTerm = searchTerm.toLowerCase();
+    let filteredRecipes = recipes.filter(recipe => 
+        recipe.recipe_name.toLowerCase().includes(searchTerm) || recipe.category.toLowerCase().includes(searchTerm)
+    )
     return {
         type: SEARCH_RECIPE,
         payload: filteredRecipes
     }
 };
-
-// export const getCategories = () => dispatch => {
-//     dispatch({
-//         type: GET_CATEGORIES_START
-//     })
-//     axiosWithAuth()
-//         .get("https://secret-family-recipes.herokuapp.com/api/categories")
-//         .then(res => {
-//             dispatch({
-//                 type: GET_CATEGORIES_SUCCESS,
-//                 payload: res.data
-//             })
-//         })
-//         .catch(err => {
-//             dispatch({
-//                 type: GET_CATEGORIES_FAILURE,
-//                 payload: err.response
-//             })
-//         })
-// }
